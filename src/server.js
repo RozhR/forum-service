@@ -3,12 +3,15 @@ import config from './configuration/config.js';
 import mongoose from "mongoose";
 import postRoutes from './routes/post.routes.js';
 import errorHandler from "./middlewares/error.middleware.js";
+import accountRoutes from "./routes/account.routes.js";
 
 const app = express();
 
 app.use(express.json());
 
 app.use('/forum', postRoutes);
+
+app.use('/account', accountRoutes);
 
 app.use(errorHandler);
 
