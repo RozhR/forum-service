@@ -19,6 +19,22 @@ const schemas = {
         dateTo: Joi.date().iso().required().greater(Joi.ref('dateFrom'))
     })
 }
+register: Joi.object({
+    login: Joi.string().required(),
+    password: Joi.string().required(),
+    firstName: Joi.string().required(),
+    lastName: Joi.string().required()
+});
+updateUser: Joi.object({
+    firstName: Joi.string(),
+    lastName: Joi.string()
+});
+changeRoles: Joi.object({
+    login: Joi.string().required(),
+    roles: Joi.string().valid('USER', 'MODERATOR', 'ADMINISTRATOR').insensitive().required()
+});
+
+
 
 const validate = (schemaName, target = 'body') => (req, res, next) => {
     const schema = schemas[schemaName];
