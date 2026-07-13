@@ -9,12 +9,14 @@ import {
     getUser,
     updateUser
 } from "../controllers/userAccount.controller.js";
+import validate from "../middlewares/validation.middleware.js";
+import {changeRoles} from "../services/userAccount.service.js";
 
 
 const router = Router();
 
 router.post('/register', validate('register'), register);
-router.post('/login',  login);
+router.post('/login', login);
 router.delete('/user/:login', deleteUser);
 router.patch('/user/:login', validate('updateUser'), updateUser);
 router.patch('/user/:login/role/:role', validate('changeRoles', 'params'), addRole);
